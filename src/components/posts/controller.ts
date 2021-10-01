@@ -9,7 +9,8 @@ const postsController = {
     });
   },
   createPost: (req: Request, res: Response) => {
-    const { userId, title, content } = req.body;
+    const { title, content } = req.body;
+    const userId = res.locals.user.id;
     const id = postsService.createPost(userId, title, content);
     res.status(201).json({
       id,
